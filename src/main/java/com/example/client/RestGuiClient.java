@@ -10,7 +10,6 @@ public class RestGuiClient {
     }
 
     private static void showApplicationWindow() {
-        JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Rest client");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
