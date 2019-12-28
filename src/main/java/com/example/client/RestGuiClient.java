@@ -6,9 +6,13 @@ import java.awt.*;
 
 public class RestGuiClient {
 
-    private static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+    private static final Border EMPTY_BORDER =
+            BorderFactory.createEmptyBorder(5, 5, 5, 5);
     private static final JLabel URL_LABEL = new JLabel("URL: ");
     private static final JTextField URL_FIELD = new JTextField();
+    private static final JLabel REQUEST_TYPE_LABEL = new JLabel("Request type: ");
+    private static final String[] requestTypes = {"GET", "POST"};
+    private static final JComboBox<String> REQUEST_TYPE_SELECT = new JComboBox<>(requestTypes);
     private static final JButton SUBMIT_BUTTON = new JButton("Submit");
     private static final JLabel REQUEST_LABEL = new JLabel("Request");
     private static final JLabel RESPONSE_LABEL = new JLabel("Response");
@@ -21,7 +25,8 @@ public class RestGuiClient {
 
     private static void showApplicationWindow() {
         URL_FIELD.setMaximumSize(new Dimension(800, 50));
-        SUBMIT_BUTTON.addActionListener(e -> URL_LABEL.setText("Submit button pressed"));
+        SUBMIT_BUTTON.addActionListener(e -> RESPONSE_AREA.setText("Request type: "
+                + REQUEST_TYPE_SELECT.getSelectedItem()));
 
         JPanel urlPanel = createUrlPanel();
         JPanel buttonPanel = createButtonPanel();
@@ -74,6 +79,11 @@ public class RestGuiClient {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
         buttonPanel.setBorder(EMPTY_BORDER);
+
+        buttonPanel.add(REQUEST_TYPE_LABEL);
+        REQUEST_TYPE_SELECT.setMaximumSize(new Dimension(200, 50));
+        buttonPanel.add(REQUEST_TYPE_SELECT);
+        buttonPanel.add(Box.createRigidArea(new Dimension(10, 10)));
         buttonPanel.add(SUBMIT_BUTTON);
         return buttonPanel;
     }
