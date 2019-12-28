@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-public class RestGuiClient {
+public class Ui {
 
     private static final Border EMPTY_BORDER =
             BorderFactory.createEmptyBorder(5, 5, 5, 5);
@@ -19,11 +19,7 @@ public class RestGuiClient {
     private static final JTextArea REQUEST_AREA = new JTextArea();
     private static final JTextArea RESPONSE_AREA = new JTextArea();
 
-    public static void main(String... args) {
-        showApplicationWindow();
-    }
-
-    private static void showApplicationWindow() {
+    static void showApplicationWindow() {
         URL_FIELD.setMaximumSize(new Dimension(800, 50));
         SUBMIT_BUTTON.addActionListener(e -> RESPONSE_AREA.setText("Request type: "
                 + REQUEST_TYPE_SELECT.getSelectedItem()));

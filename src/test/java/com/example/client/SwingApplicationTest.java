@@ -2,10 +2,10 @@ package com.example.client;
 
 import org.junit.jupiter.api.Test;
 
-class RestGuiClientTest {
+class SwingApplicationTest {
 
     @Test
     void whenMainThenSuccessful() throws Exception {
-        RestGuiClient.main();
+        SwingApplication.main();
     }
 }
