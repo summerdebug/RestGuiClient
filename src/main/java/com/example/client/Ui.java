@@ -1,28 +1,40 @@
 package com.example.client;
 
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
-import java.awt.*;
 
 public class Ui {
 
     private static final Border EMPTY_BORDER =
             BorderFactory.createEmptyBorder(5, 5, 5, 5);
     private static final JLabel URL_LABEL = new JLabel("URL: ");
-    private static final JTextField URL_FIELD = new JTextField();
+    public static final JTextField URL_FIELD = new JTextField();
     private static final JLabel REQUEST_TYPE_LABEL = new JLabel("Request type: ");
     private static final String[] requestTypes = {"GET", "POST"};
-    private static final JComboBox<String> REQUEST_TYPE_SELECT = new JComboBox<>(requestTypes);
+    public static final JComboBox<String> REQUEST_TYPE_SELECT = new JComboBox<>(requestTypes);
     private static final JButton SUBMIT_BUTTON = new JButton("Submit");
-    private static final JLabel REQUEST_LABEL = new JLabel("Request");
+    private static final JLabel REQUEST_LABEL = new JLabel("Request body");
     private static final JLabel RESPONSE_LABEL = new JLabel("Response");
-    private static final JTextArea REQUEST_AREA = new JTextArea();
-    private static final JTextArea RESPONSE_AREA = new JTextArea();
+    public static final JTextArea REQUEST_AREA = new JTextArea();
+    public static final JTextArea RESPONSE_AREA = new JTextArea();
+    private static final String DEFAULT_URL = "http://localhost:8080/employees";
 
     static void showApplicationWindow() {
         URL_FIELD.setMaximumSize(new Dimension(800, 50));
-        SUBMIT_BUTTON.addActionListener(e -> RESPONSE_AREA.setText("Request type: "
-                + REQUEST_TYPE_SELECT.getSelectedItem()));
+        URL_FIELD.setText(DEFAULT_URL);
+        SUBMIT_BUTTON.addActionListener(RestClient::submit);
 
         JPanel urlPanel = createUrlPanel();
         JPanel buttonPanel = createButtonPanel();
